@@ -6,7 +6,8 @@
     "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:e2e": "node scripts/test_e2e.mjs"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

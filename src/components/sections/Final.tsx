@@ -7,7 +7,6 @@ import { Trophy, Award, Sparkles, Crown, ArrowRight, Star, Users } from "lucide-
 import confetti from "canvas-confetti";
 
 interface FinalProps {
-  onOpenRegister?: () => void;
   onExploreAbout: () => void;
 }
 

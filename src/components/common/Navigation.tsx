@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { sound } from "@/lib/audio";
 import { handleRegistrationRedirect } from "@/config/registration";
-import { Volume2, VolumeX, Menu, X, ArrowUpRight, Sparkles, ExternalLink } from "lucide-react";
+import { Volume2, VolumeX, Menu, X, ArrowUpRight, Sparkles } from "lucide-react";
 
 interface NavigationProps {
   currentStage: string;

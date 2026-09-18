@@ -7,7 +7,6 @@ import { ArrowDown, Cpu, Sparkles, Brain, Zap, Users } from "lucide-react";
 
 interface HeroProps {
   onExplore: () => void;
-  onOpenRegister?: () => void;
 }
 
 export default function Hero({ onExplore }: HeroProps) {

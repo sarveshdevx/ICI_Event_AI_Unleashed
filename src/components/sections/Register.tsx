@@ -3,36 +3,26 @@
 import React from "react";
 import { sound } from "@/lib/audio";
 import {
-  REGISTRATION_URL,
-  TEAM_SIZE,
   TEAM_SIZE_LABEL,
   TEAM_SIZE_RULE,
   handleRegistrationRedirect,
 } from "@/config/registration";
 import {
   Zap,
-  ArrowUpRight,
   Sparkles,
   MapPin,
   Calendar,
   Users,
   Phone,
-  ExternalLink,
-  ShieldAlert,
+  ArrowUpRight,
 } from "lucide-react";
 
 interface RegisterProps {
-  onRegisterClick?: () => void;
   onJumpToSection: (id: string) => void;
 }
 
 export default function Register({ onJumpToSection }: RegisterProps) {
-  const isConfigured =
-    REGISTRATION_URL &&
-    REGISTRATION_URL !== "[ICI_REGISTRATION_URL]" &&
-    (REGISTRATION_URL.startsWith("http://") || REGISTRATION_URL.startsWith("https://"));
-
-  const onRegister = () => {
+  const handleRegisterClick = () => {
     sound.playClick();
     handleRegistrationRedirect();
   };
@@ -76,7 +66,7 @@ export default function Register({ onJumpToSection }: RegisterProps) {
         </div>
 
         {/* CRITICAL TEAM RULE CALLOUT */}
-        <div className="mt-8 px-6 py-3 rounded-2xl bg-amber-500/10 border-2 border-amber-400/60 text-amber-300 shadow-[0_0_30px_rgba(251,191,36,0.2)] max-w-md w-full">
+        <div className="mt-8 px-6 py-3.5 rounded-2xl bg-amber-500/10 border-2 border-amber-400/60 text-amber-300 shadow-[0_0_30px_rgba(251,191,36,0.2)] max-w-md w-full">
           <div className="flex items-center justify-center gap-2 text-xs font-mono tracking-widest uppercase font-black">
             <Users className="w-4 h-4 text-amber-400" />
             <span>OFFICIAL TEAM RULE:</span>
@@ -85,57 +75,56 @@ export default function Register({ onJumpToSection }: RegisterProps) {
             EXACTLY 3 PLAYERS
           </div>
           <div className="text-[11px] font-mono text-amber-200/80 mt-0.5">
-            3 PLAYERS PER TEAM • REGISTRATION MANAGED VIA ICI PORTAL
+            1 LEADER + 2 MEMBERS • STRICTLY ENFORCED
           </div>
         </div>
 
         {/* Event Key Parameters */}
-        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-6 text-xs font-mono text-slate-300">
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10">
-            <Users className="w-3.5 h-3.5 text-[#00E5FF]" />
-            <span>60 TEAMS MAXIMUM</span>
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-6 text-xs font-mono text-slate-300">
+          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/60 border border-[#00E5FF]/40 text-[#00E5FF] shadow-[0_0_15px_rgba(0,229,255,0.2)]">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="font-bold">CAPACITY: 60 TEAMS</span>
+            <span className="text-slate-500">|</span>
+            <span className="text-slate-300">LIMITED SLOTS</span>
           </div>
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10">
+
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10">
             <Zap className="w-3.5 h-3.5 text-[#FF5A5F]" />
             <span>3 PROGRESSIVE ROUNDS</span>
           </div>
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10">
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10">
             <Calendar className="w-3.5 h-3.5 text-[#FFD83D]" />
             <span>12–17 OCT 2026</span>
           </div>
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10">
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10">
             <MapPin className="w-3.5 h-3.5 text-emerald-400" />
             <span>CIVIL DEPT, SKIT</span>
           </div>
         </div>
 
-        {/* Primary Redirect Action */}
+        {/* Primary Action Button (Opens External ICI Portal) */}
         <div className="mt-9 flex flex-col items-center gap-3">
           <button
-            onClick={onRegister}
+            onClick={handleRegisterClick}
             onMouseEnter={() => sound.playHover()}
             data-cursor="REGISTER"
-            className="group relative px-10 py-5 rounded-full bg-gradient-to-r from-[#087BFF] via-[#8B3DFF] via-[#FF3CAC] to-[#FFD83D] text-[#07111F] font-black text-base uppercase tracking-widest transition-all duration-300 hover:scale-105 shadow-[0_0_50px_rgba(0,229,255,0.6)]"
+            className="group relative px-10 py-5 rounded-full bg-gradient-to-r from-[#087BFF] via-[#8B3DFF] via-[#FF3CAC] to-[#FFD83D] text-[#07111F] font-black text-base uppercase tracking-widest transition-all duration-300 hover:scale-105 shadow-[0_0_50px_rgba(0,229,255,0.6)] cursor-pointer"
           >
             <span className="relative z-10 flex items-center gap-3">
               <Zap className="w-5 h-5 fill-current" />
               <span>[ REGISTER YOUR TEAM ]</span>
-              <ExternalLink className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </span>
           </button>
 
-          {/* Config URL status indicator */}
           <div className="text-[11px] font-mono text-slate-400">
-            <span>OFFICIAL PORTAL: </span>
-            <span className={isConfigured ? "text-emerald-400 font-bold" : "text-amber-400/90 font-mono"}>
-              {REGISTRATION_URL}
-            </span>
+            OFFICIAL ICI PORTAL • REDIRECTS IN NEW TAB
           </div>
         </div>
 
-        {/* Coordinator Helpdesk */}
-        <div className="mt-10 p-6 rounded-2xl bg-white/[0.02] border border-white/10 max-w-xl w-full text-left">
-          <div className="text-[11px] font-mono font-bold text-slate-400 uppercase mb-2 flex items-center justify-between">
+        {/* Coordinator Helpdesk Contact Card */}
+        <div className="mt-10 sm:mt-12 p-6 sm:p-7 rounded-2xl bg-white/[0.02] border border-white/10 max-w-xl w-full text-left backdrop-blur-md">
+          <div className="text-[11px] font-mono font-bold text-slate-400 uppercase mb-3 flex items-center justify-between">
             <span>STUDENT COORDINATORS // AI DEPT</span>
             <span className="text-emerald-400 font-mono">CONTACT</span>
           </div>
